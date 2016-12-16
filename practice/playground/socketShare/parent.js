@@ -4,10 +4,13 @@ var server = require('net').createServer();
 
 server.on('connection', function (socket) {
   socket.on('data', function (data) {
-    console.log('parent received socket message');
-    console.log(data.toString());
-  })
-  child.send('socket', socket);
+    console.log('parent : ' + data);
+    socket.write('Echo from parent : ' + data);
+  });
+
+  setTimeout(function () {
+    child.send('socket', socket);
+  }, 10000);
 
   server.getConnections(function (err, count) {
     console.log('Connections : ' + count);

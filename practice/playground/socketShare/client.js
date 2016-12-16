@@ -10,3 +10,7 @@ socket.connect(1337, '127.0.0.1', function () {
 socket.on('data', function (data) {
   console.log(data.toString());
 })
+
+process.stdin.on('data', function (data) {
+  socket.write(data.toString());
+})

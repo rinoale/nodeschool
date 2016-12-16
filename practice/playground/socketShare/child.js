@@ -1,6 +1,7 @@
 process.on('message', function (message, socket) {
+  console.log('Parent sent : ' + message);
   socket.on('data', function (data) {
-    console.log('child received socket message');
-    socket.write('Echo : ' + data);
+    console.log('child : ' + data);
+    socket.write('Echo from child : ' + data);
   })
 })
